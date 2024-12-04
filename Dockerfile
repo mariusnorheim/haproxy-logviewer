@@ -4,8 +4,15 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y \
     goaccess \
     curl \
-    python3 && \
+    python3 \
+    locales && \
     apt-get clean
+RUN locale-gen en_US.UTF-8 && \
+    update-locale LANG=en_US.UTF-8 \
+    update-locale LC_ALL=en_US.UTF-8
+
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 # Set up the working directory
 WORKDIR /app
